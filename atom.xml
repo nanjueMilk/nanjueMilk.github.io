@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Li-Qing</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-03-14T07:33:25.464Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Liqing</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信小程序开发</title>
+    <link href="http://yoursite.com/2019/03/12/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <id>http://yoursite.com/2019/03/12/微信小程序开发/</id>
+    <published>2019-03-12T10:39:16.000Z</published>
+    <updated>2019-03-14T07:33:25.464Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="开发步骤："><a href="#开发步骤：" class="headerlink" title="开发步骤："></a>开发步骤：</h4><ol><li>小程序注册（拥有一个AppID）</li><li>安装开发工具</li></ol><h4 id="文件目录："><a href="#文件目录：" class="headerlink" title="文件目录："></a>文件目录：</h4><p><img src="https://raw.githubusercontent.com/nanjueMilk/myImg/master/xcx01.png" alt="image"></p><ul><li>.json 后缀的 JSON 配置文件</li><li>.wxml 后缀的 WXML 模板文件</li><li>.wxss 后缀的 WXSS 样式文件</li><li>.js 后缀的 JS 脚本逻辑文件</li></ul><h5 id="json-配置"><a href="#json-配置" class="headerlink" title="json 配置"></a>json 配置</h5><p>1.<strong>app.json</strong> 是全局配置：页面路径、界面样式、网络超时时间、底部 tab 等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;pages&quot;:[</span><br><span class="line">        &quot;pages/index/index&quot;,</span><br><span class="line">        &quot;pages/logs/logs&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;window&quot;:&#123;</span><br><span class="line">        &quot;backgroundTextStyle&quot;:&quot;light&quot;,</span><br><span class="line">        &quot;navigationBarBackgroundColor&quot;: &quot;#fff&quot;,</span><br><span class="line">        &quot;navigationBarTitleText&quot;: &quot;WeChat&quot;,</span><br><span class="line">        &quot;navigationBarTextStyle&quot;:&quot;black&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>pages字段：用于描述当前小程序所有页面路径，这是为了让微信客户端知道当前你的小程序页面定义在哪个目录。</p></blockquote><blockquote><p>window字段：定义小程序所有页面的顶部背景颜色，文字颜色定义等。</p></blockquote><ol><li>开发者工具配置 <strong>project.config.json</strong></li><li>页面配置 <strong>page.json</strong><blockquote><p>独立定义每个页面的一些属性，例如顶部颜色、是否允许下拉刷新等。</p></blockquote></li></ol><h5 id="WXML模板"><a href="#WXML模板" class="headerlink" title="WXML模板"></a>WXML模板</h5><ol><li>标签<blockquote><p>常用组件包装</p></blockquote></li><li>wx:if 这样的属性及 插值表达式</li></ol><h5 id="WXSS样式"><a href="#WXSS样式" class="headerlink" title="WXSS样式"></a>WXSS样式</h5><ol><li>新增的尺寸单位 rpx</li><li>全局的样式和局部样式<blockquote><p>app.wxss 作为全局样式，会作用于所有页面，局部页面样式 page.wxss 仅对当前页面生效。</p></blockquote></li><li>WXSS 仅支持部分 CSS 选择器</li></ol><h5 id="JS逻辑"><a href="#JS逻辑" class="headerlink" title="JS逻辑"></a>JS逻辑</h5><h4 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h4><ul><li>API请求</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">onLoad: function()&#123;</span><br><span class="line">    this.getProList();</span><br><span class="line">&#125;</span><br><span class="line">getProList: function()&#123;</span><br><span class="line">    var self = this;</span><br><span class="line">    wx.request(&#123;</span><br><span class="line">        url:&quot;https://129.199.19:3000&quot;,</span><br><span class="line">        method:&quot;GET&quot;,</span><br><span class="line">        success: function(res)&#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            self.setData(&#123;</span><br><span class="line">                proList:res.data</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><p>基础库兼容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">copy:function ()&#123;</span><br><span class="line">    if(wx.setClipboardData)&#123;</span><br><span class="line">        wx.setClipboardData(&#123;</span><br><span class="line">            data:&quot;复制文字&quot;，</span><br><span class="line">            success：function(res)&#123;</span><br><span class="line">            wx.showModal(&#123;</span><br><span class="line">                title:&quot;复制&quot;,</span><br><span class="line">                content:&quot;内容已经复制成功&quot;</span><br><span class="line">                </span><br><span class="line">            &#125;) </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        wx.showModal(&#123;</span><br><span class="line">            title:&quot;提示&quot;,</span><br><span class="line">            content:&quot;您的微信版本太低，请升级&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>不同页面的传值</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">toDetail: function(e)&#123;</span><br><span class="line">    var index = e.currentTarget.dataset.index;</span><br><span class="line">    wx.navigateTo (&#123;</span><br><span class="line">        url: &apos;page/detail/detail?title&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><ul><li>允许上传的文件</li></ul><blockquote><p>在项目目录中，以下文件会经过编译，因此上传之后无法直接访问到：.js、app.json、.wxml、*.wxss（其中 wxml 和 wxss 文件仅针对在 app.json 中配置了的页面）。</p></blockquote><blockquote><p>只有后缀名在白名单内的文件可以被上传。具体白名单列表如下：</p><ol><li>wxs</li><li>png</li><li>jpg</li><li>jpeg</li><li>gif</li><li>svg</li><li>json</li><li>cer</li><li>mp3</li><li>aac</li><li>m4a</li><li>mp4</li><li>wav</li><li>ogg</li><li>silk</li></ol></blockquote><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="1-全局配置"><a href="#1-全局配置" class="headerlink" title="1. 全局配置"></a>1. 全局配置</h4><blockquote><p>根目录下的 <strong>app.json</strong>文件用来对微信小程序进行全局配置，决定页面<strong>文件的路径</strong>、<strong>窗口表现</strong>、<strong>设置网络超时时间</strong>、设置多 <strong>tab</strong> 等</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;开发步骤：&quot;&gt;&lt;a href=&quot;#开发步骤：&quot; class=&quot;headerlink&quot; title=&quot;开发步骤：&quot;&gt;&lt;/a&gt;开发步骤：&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;小程序注册（拥有一个AppID）&lt;/li&gt;
+&lt;li&gt;安装开发工具&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;
+      
+    
+    </summary>
+    
+      <category term="微信小程序" scheme="http://yoursite.com/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="微信小程序" scheme="http://yoursite.com/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[微信小程序开发]]></title>
+    <url>%2F2019%2F03%2F12%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%2F</url>
+    <content type="text"><![CDATA[开发步骤： 小程序注册（拥有一个AppID） 安装开发工具 文件目录： .json 后缀的 JSON 配置文件 .wxml 后缀的 WXML 模板文件 .wxss 后缀的 WXSS 样式文件 .js 后缀的 JS 脚本逻辑文件 json 配置1.app.json 是全局配置：页面路径、界面样式、网络超时时间、底部 tab 等。123456789101112&#123; &quot;pages&quot;:[ &quot;pages/index/index&quot;, &quot;pages/logs/logs&quot; ], &quot;window&quot;:&#123; &quot;backgroundTextStyle&quot;:&quot;light&quot;, &quot;navigationBarBackgroundColor&quot;: &quot;#fff&quot;, &quot;navigationBarTitleText&quot;: &quot;WeChat&quot;, &quot;navigationBarTextStyle&quot;:&quot;black&quot; &#125;&#125; pages字段：用于描述当前小程序所有页面路径，这是为了让微信客户端知道当前你的小程序页面定义在哪个目录。 window字段：定义小程序所有页面的顶部背景颜色，文字颜色定义等。 开发者工具配置 project.config.json 页面配置 page.json 独立定义每个页面的一些属性，例如顶部颜色、是否允许下拉刷新等。 WXML模板 标签 常用组件包装 wx:if 这样的属性及 插值表达式 WXSS样式 新增的尺寸单位 rpx 全局的样式和局部样式 app.wxss 作为全局样式，会作用于所有页面，局部页面样式 page.wxss 仅对当前页面生效。 WXSS 仅支持部分 CSS 选择器 JS逻辑常见问题： API请求 12345678910111213141516onLoad: function()&#123; this.getProList();&#125;getProList: function()&#123; var self = this; wx.request(&#123; url:&quot;https://129.199.19:3000&quot;, method:&quot;GET&quot;, success: function(res)&#123; console.log(res); self.setData(&#123; proList:res.data &#125;) &#125; &#125;)&#125; 基础库兼容 12345678910111213141516171819copy:function ()&#123; if(wx.setClipboardData)&#123; wx.setClipboardData(&#123; data:&quot;复制文字&quot;， success：function(res)&#123; wx.showModal(&#123; title:&quot;复制&quot;, content:&quot;内容已经复制成功&quot; &#125;) &#125; &#125;) &#125;else &#123; wx.showModal(&#123; title:&quot;提示&quot;, content:&quot;您的微信版本太低，请升级&quot; &#125;) &#125;&#125; 不同页面的传值 123456toDetail: function(e)&#123; var index = e.currentTarget.dataset.index; wx.navigateTo (&#123; url: &apos;page/detail/detail?title&apos; &#125;)&#125; 框架目录结构 允许上传的文件 在项目目录中，以下文件会经过编译，因此上传之后无法直接访问到：.js、app.json、.wxml、*.wxss（其中 wxml 和 wxss 文件仅针对在 app.json 中配置了的页面）。 只有后缀名在白名单内的文件可以被上传。具体白名单列表如下： wxs png jpg jpeg gif svg json cer mp3 aac m4a mp4 wav ogg silk 配置1. 全局配置 根目录下的 app.json文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等]]></content>
+      <categories>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+</search>
